@@ -1,92 +1,103 @@
 
 <html>
   <div id = "inserted">
-
-    <!DOCTYPE html>
-<html>
-<head>
-<style>
-    html,body{
-        padding:0;
-        margin:0;
-        font-family:arial;
-    }
-    .clearfix:after{
-        content: '.';
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-    }
-    #container{
-        width:706px;
-        height:308px;
-        margin:50px auto;
-    }
-        #grid{
-            width:306px;
-            border:1px solid #000;
-            list-style:none;
+    <style>
+        html,body{
             padding:0;
             margin:0;
-            float:left;
+            font-family:arial;
         }
-            #grid li{
-                width:100px;
-                height:100px;
-                border:1px solid #000;
-                float:left;
-                text-align:center;
-            }
-                #grid li span{
-                    line-height:100px;
-                    font-size:100px;
-                }
+        .clearfix:after{
+            content: '.';
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        #inserted{
+          height: 400px;
+          background-color: powderblue;
+          margin: auto;
+          width: 50%;
+          border: 3px solid green;
+          padding: 10px;
+          display: block;
+          position: fixed;
+          top: 30%;
+          left: 35%;
+          margin-top: -50px;
+          margin-left: -100px;
+          z-index: 1000;
+        }
+        #container{
+          width:706px;
+          height:308px;
+          margin:50px auto;
+        }
+        #grid{
+          width:306px;
+          border:1px solid #000;
+          list-style:none;
+          padding:0;
+          margin:0;
+          float:left;
+        }
+        #grid li{
+            width:100px;
+            height:100px;
+            border:1px solid #000;
+            float:left;
+            text-align:center;
+        }
+        #grid li span{
+            line-height:100px;
+            font-size:100px;
+        }
         #info{
             width:300px;
             float:left;
         }
-            #info h1, #info h2, #info a{
-                margin:0 0 0 20px;
-            }
+        #info h1, #info h2, #info a{
+            margin:0 0 0 20px;
+        }
 
         #info #current_player{
-            margin-bottom:20px;
+          margin-bottom:20px;
         }
-</style>
-<script>
-var cells_arr = [],
+    </style>
+    <script>
+      var cells_arr = [],
 
-    vertices = [
+          vertices = [
 
-        //horizontal
-        [0,1,2],
-        [3,4,5],
-        [6,7,8],
+              //horizontal
+              [0,1,2],
+              [3,4,5],
+              [6,7,8],
 
-        //vertical
-        [0,3,6],
-        [1,4,7],
-        [2,5,8],
+              //vertical
+              [0,3,6],
+              [1,4,7],
+              [2,5,8],
 
-        //diagonals
-        [0,4,8],
-        [2,4,6],
+              //diagonals
+              [0,4,8],
+              [2,4,6],
 
-    ],
-    player = 0,
-    game_over = false,
-    score = [0,0],
-    moves = 0;
+          ],
+          player = 0,
+          game_over = false,
+          score = [0,0],
+          moves = 0;
 
 
-var ev = function(target, evt, cb){
-    if(target.attachEvent){
-        target.attachEvent('on'+evt, cb);
-    }else{
-        target.addEventListener(evt, cb, false);
-    }
-}
+      var ev = function(target, evt, cb){
+          if(target.attachEvent){
+              target.attachEvent('on'+evt, cb);
+          }else{
+              target.addEventListener(evt, cb, false);
+          }
+      }
 
 ev(window, 'load', function(){
 
@@ -160,56 +171,42 @@ ev(window, 'load', function(){
     }
 
     ev( document.getElementById('play_again'), 'click', function(ev){
-
-        ev.preventDefault();
-
-        cells_arr = [];
-        player = 0;
-        game_over = false;
-        moves = 0;
-
-        for(var i=0, len=cells.length; i<len; i++){
-            cells[i].innerHTML = '';
-        }
-
-        document.getElementById('current_player').innerHTML = player===0?"X's":"O's";
-
+      $("#inserted").hide()
     });
 
 });
 
-</script>
-</head>
-<body>
-    <div id="container" class="clearfix">
+    </script>
+    </head>
+    <body>
+        <div id="container" class="clearfix">
 
-        <ul id="grid" class="clearfix">
+            <ul id="grid" class="clearfix">
 
-            <li></li>
-            <li></li>
-            <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
 
-            <li></li>
-            <li></li>
-            <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
 
-            <li></li>
-            <li></li>
-            <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
 
-        </ul>
+            </ul>
 
-        <div id="info">
-            <h1>Current Player</h1>
-            <h2 id="current_player">X's</h2>
-            <h1>Scores</h1>
-            <h2 id="x_score">X: 0</h2>
-            <h2 id="o_score">O: 0</h2>
+            <div id="info">
+                <h1>Current Player</h1>
+                <h2 id="current_player">X's</h2>
+                <h1>Scores</h1>
+                <h2 id="x_score">X: 0</h2>
+                <h2 id="o_score">O: 0</h2>
 
-            <a href="" id="play_again">Play Again?</a>
+                <a href="" id="play_again">Quit</a>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+    </body>
   </div>
 </html>
