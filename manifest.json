@@ -21,5 +21,8 @@
     "activeTab",
     "storage",
     "tabs"
+  ],
+  "web_accessible_resources": [
+    "/content.html"
   ]
 }

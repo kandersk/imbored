@@ -28,8 +28,13 @@
 //   $(data).appendTo('body')
 // })
 
-var iframe = document.createElement('iframe')
-iframe.src = chrome.extension.getURL('content.html')
-document.body.appendChild(iframe)
+// var iframe = document.createElement('iframe')
+// iframe.src = chrome.extension.getURL('content.html')
+// document.body.appendChild(iframe)
+//
+// location.replace(chrome.extension.getURL('content.html'))
+// alert(chrome.extension.getURL('content.html'))
 
-alert(chrome.extension.getURL('content.html'))
+$.get(chrome.extension.getURL('/content.html'), function(data){
+  $($.parseHTML(data)).appendTo('body')
+})
