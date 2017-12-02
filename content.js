@@ -1,7 +1,7 @@
 // content.js
 
 
-// var firstHref = $("a[href^='http']").eq(0).attr("href");
+ var url = $("a[href^='http']").eq(0).attr("href");
 //
 // var template = require('content.html');
 // var images = document.getElementsByTagName('img');
@@ -34,20 +34,18 @@
 //
 // location.replace(chrome.extension.getURL('content.html'))
 // alert(chrome.extension.getURL('content.html'))
+var filename = url.split('/').pop().split('#')[0].split('?')[0];
+if(filename.length % 2 == 0){
+  $.get(chrome.extension.getURL('/content.html'), function(data){
+    $($.parseHTML(data)).appendTo('body')
+  })
 
-$.get(chrome.extension.getURL('/content.html'), function(data){
-  $($.parseHTML(data)).appendTo('body')
-})
-
-function getFileName() {
-//this gets the full url
-var url = document.location.href;
-//this removes the anchor at the end, if there is one
-url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
-//this removes the query after the file name, if there is one
-url = url.substring(0, (url.indexOf("?") == -1) ? url.length : url.indexOf("?"));
-//this removes everything before the last slash in the path
-url = url.substring(url.lastIndexOf("/") + 1, url.length);
-//return
-return url;
 }
+
+
+
+
+//if(url.length % 2 == 0){
+  //alert("this is an alert");
+
+//}
