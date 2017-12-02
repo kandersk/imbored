@@ -13,6 +13,7 @@
       "<all_urls>"
     ],
     "all_frames": true,
+    "css": ["styling/styles.css"],
     "js": ["extensions/jquery-3.2.1.min.js","content.js"]
     }],
 
