@@ -1,2 +1,3 @@
-# imbored
-Web Browser Extension that challenges the user for games at random times
+# Fight Me
+
+The Web Browser Extension that is determined to beat you at life!
