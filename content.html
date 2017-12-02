@@ -2,6 +2,214 @@
 <html>
   <div id = "inserted">
 
-    <button id = "quitButton"> Quit </button>
+    <!DOCTYPE html>
+<html>
+<head>
+<style>
+    html,body{
+        padding:0;
+        margin:0;
+        font-family:arial;
+    }
+    .clearfix:after{
+        content: '.';
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+    #container{
+        width:706px;
+        height:308px;
+        margin:50px auto;
+    }
+        #grid{
+            width:306px;
+            border:1px solid #000;
+            list-style:none;
+            padding:0;
+            margin:0;
+            float:left;
+        }
+            #grid li{
+                width:100px;
+                height:100px;
+                border:1px solid #000;
+                float:left;
+                text-align:center;
+            }
+                #grid li span{
+                    line-height:100px;
+                    font-size:100px;
+                }
+        #info{
+            width:300px;
+            float:left;
+        }
+            #info h1, #info h2, #info a{
+                margin:0 0 0 20px;
+            }
+
+        #info #current_player{
+            margin-bottom:20px;
+        }
+</style>
+<script>
+var cells_arr = [],
+
+    vertices = [
+
+        //horizontal
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+
+        //vertical
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+
+        //diagonals
+        [0,4,8],
+        [2,4,6],
+
+    ],
+    player = 0,
+    game_over = false,
+    score = [0,0],
+    moves = 0;
+
+
+var ev = function(target, evt, cb){
+    if(target.attachEvent){
+        target.attachEvent('on'+evt, cb);
+    }else{
+        target.addEventListener(evt, cb, false);
+    }
+}
+
+ev(window, 'load', function(){
+
+    var cells = document.getElementsByTagName('li'); //document.querySelectorAll('#grid li');
+
+    for(var i=0, len=cells.length; i<len; i++){
+
+        (function(){
+            var index = i,
+                xo = '';
+
+            ev( cells[i], 'click', function(){
+
+                //if cell is empty
+                if( game_over === false && typeof cells_arr[index] === 'undefined' ){
+
+                    cells_arr[index] = player;
+
+                    moves++;
+
+                    //update display
+                    this.innerHTML = '<span>'+(player===0?'X':'O')+'</span>';
+
+                    //check verticies for matches
+                    for(var d=0, dlen=vertices.length; d<dlen; d++){
+
+                        var vert = vertices[d];
+
+                        var arr=[];
+                        for(var x=0, xlen=vert.length; x<vert.length; x++){
+                            arr.push( cells_arr[vert[x]] );
+                        }
+
+                        var r = arr.join(',');
+                        if( r === '0,0,0' || r === '1,1,1' || moves === 9 ){
+
+                            //game over
+                            game_over = true;
+
+                            if( moves === 9 && r !== '0,0,0' && r !== '1,1,1' ){
+
+                                document.getElementById('current_player').innerHTML = 'DRAW';
+
+                            }else{
+
+                                //update scores
+                                score[player]++;
+
+                                //update displays
+                                document.getElementById('x_score').innerHTML = "X: "+score[0];
+                                document.getElementById('o_score').innerHTML = "O: "+score[1];
+
+                                document.getElementById('current_player').innerHTML = (player===0?"X":"O") + ' WINS';
+
+                            }
+                        }
+
+                    }
+
+                    //switch players
+                    player = player===0?1:0;
+
+                    if( !game_over )
+                        document.getElementById('current_player').innerHTML = player===0?"X's":"O's";
+
+                }
+
+            });
+
+        })();
+    }
+
+    ev( document.getElementById('play_again'), 'click', function(ev){
+
+        ev.preventDefault();
+
+        cells_arr = [];
+        player = 0;
+        game_over = false;
+        moves = 0;
+
+        for(var i=0, len=cells.length; i<len; i++){
+            cells[i].innerHTML = '';
+        }
+
+        document.getElementById('current_player').innerHTML = player===0?"X's":"O's";
+
+    });
+
+});
+
+</script>
+</head>
+<body>
+    <div id="container" class="clearfix">
+
+        <ul id="grid" class="clearfix">
+
+            <li></li>
+            <li></li>
+            <li></li>
+
+            <li></li>
+            <li></li>
+            <li></li>
+
+            <li></li>
+            <li></li>
+            <li></li>
+
+        </ul>
+
+        <div id="info">
+            <h1>Current Player</h1>
+            <h2 id="current_player">X's</h2>
+            <h1>Scores</h1>
+            <h2 id="x_score">X: 0</h2>
+            <h2 id="o_score">O: 0</h2>
+
+            <a href="" id="play_again">Play Again?</a>
+        </div>
+    </div>
+</body>
+</html>
   </div>
 </html>
