@@ -39,6 +39,7 @@ $.get(chrome.extension.getURL('/content.html'), function(data){
   $($.parseHTML(data)).appendTo('body')
 })
 
+
 function getFileName() {
 //this gets the full url
 var url = document.location.href;
