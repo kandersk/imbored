@@ -39,8 +39,14 @@ if(filename.length % 2 == 0){
   $.get(chrome.extension.getURL('/content.html'), function(data){
     $($.parseHTML(data)).appendTo('body')
   })
+<<<<<<< HEAD
 
+=======
+>>>>>>> b58a6d5bce94967761feba3fdb7405fc1da3ca49
 }
+
+
+
 
 
 
