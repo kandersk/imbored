@@ -34,6 +34,8 @@
 // location.replace(chrome.extension.getURL('content.html'))
 // alert(chrome.extension.getURL('content.html'))
 
+
+
 var filename = url.split('/').pop().split('#')[0].split('?')[0];
 if(filename.length % 2 == 0){
   $.get(chrome.extension.getURL('/content.html'), function(data){
