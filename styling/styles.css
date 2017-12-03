@@ -1,9 +1,9 @@
 #inserted{
   height: 400px;
-  background-color: powderblue;
+  background-color: transparent;
   margin: auto;
   width: 50%;
-  border: 3px solid green;
+  border: 3px transparent;
   padding: 10px;
   display: block;
   position: fixed;
