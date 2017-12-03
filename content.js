@@ -21,7 +21,10 @@
 
 
 // window.open("https://www.formget.com/mailget/" , '_blank');
-// This
+// This will ruin your web browser
+
+
+
 // location.replace(chrome.extension.getURL('/content.html'))
 // $.get(chrome.extension.getURL('/content.html'), function(data){
 //   $(data).appendTo('body')
