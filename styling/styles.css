@@ -4,5 +4,8 @@
   width: 50%;
   padding: 10px;
   display: block;
+  position: fixed;
+  margin-top: -50px;
+  margin-left: -100px;
   z-index: 1000;
 }
